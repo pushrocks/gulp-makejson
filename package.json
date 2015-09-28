@@ -1,0 +1,29 @@
+{
+  "name": "gulp-makejson",
+  "version": "0.0.1",
+  "description": "creates json from source files and pipes the resulting jsonn down to the next plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd ts/compile && gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pushrocks/gulp-bootstrap.git"
+  },
+  "keywords": [
+    "json",
+    "jade",
+    "template"
+  ],
+  "author": "Smart Coordination GmbH <office@push.rocks> (https://push.rocks)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pushrocks/gulp-bootstrap/issues"
+  },
+  "homepage": "https://github.com/pushrocks/gulp-bootstrap",
+  "dependencies": {
+    "gulp-util": "^3.0.6",
+    "pushrocks":"latest",
+    "through2": "^2.0.0"
+  }
+}
