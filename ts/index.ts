@@ -13,7 +13,14 @@ module.exports = function (options) {
     options.relative = options.relative || false;
     options.strip = options.strip || false;
 
-    return through.obj(function (file, enc, cb) {
+    /**
+     * build the json, does not pipe anything down the pipeline
+     * @param file The file (or chunk in node stream terms)
+     * @param enc
+     * @param cb The callback
+     * @returns {any}
+     */
+    var buildJson = function (file, enc, cb) {
 
         if (file.isStream()) {
             this.emit('error', new gutil.PluginError('gulp-to-json', 'Streaming not supported'));
@@ -32,9 +39,16 @@ module.exports = function (options) {
 
         return cb();
 
-    }, function (cb) {
+    };
+
+    /**
+     * gets executed on end of stream, pipes the build json down the pipeline
+     * @param cb
+     */
+    var pipeJson = function (cb) {
+
+    };
 
 
-
-    });
+    return through.obj(buildJson,pipeJson);
 };
