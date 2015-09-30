@@ -28,9 +28,6 @@ module.exports = function (options) {
         }
 
         var path = file.path;
-        if (options.relative) {
-            path = file.relative;
-        }
 
         if (options.strip) {
             path = path.replace(options.strip, '');
