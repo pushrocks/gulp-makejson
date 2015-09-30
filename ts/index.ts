@@ -46,7 +46,9 @@ module.exports = function (options) {
      * @param cb
      */
     var pipeJson = function (cb) {
-
+        var finalJson = JSON.stringify(files, null, 0);
+        var finalFile = new gutil.File();
+        cb(null,finalFile);
     };
 
 
