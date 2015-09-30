@@ -1,20 +1,24 @@
 /// <reference path="typings/tsd.d.ts" />
 'use strict';
 var gutil = require('gulp-util');
+var path = require("path");
+var pr = require('pushrocks');
 var through = require('through2');
-var pushrocks = require('pushrocks');
 
-module.exports = function (options) {
+module.exports = function (options, logBool:boolean = false) {
 
-    var files = [];
-
+    //handle options
     options = options ? options : {};
     options.filename = options.filename || 'output.json';
-    options.relative = options.relative || false;
-    options.strip = options.strip || false;
+
+    //log output filename
+    if (logBool) pr.beautylog.log('filenames output is ' + options.filename);
+
+    var constructJson = {};
+    var initialBase:string;
 
     /**
-     * build the json, does not pipe anything down the pipeline
+     * build the json, does not pipe anything down the pipeline, look at the pipeJson function for that
      * @param file The file (or chunk in node stream terms)
      * @param enc
      * @param cb The callback
@@ -27,11 +31,9 @@ module.exports = function (options) {
             return cb();
         }
 
-        var path = file.path;
+        //create a new param on file with the String of the current Buffer as content
+        constructJson[file.relative] = String(file.contents);
 
-        if (options.strip) {
-            path = path.replace(options.strip, '');
-        }
 
 
         return cb();
@@ -40,11 +42,18 @@ module.exports = function (options) {
 
     /**
      * gets executed on end of stream, pipes the build json down the pipeline
-     * @param cb
+     * @param cb the callback to let gulp know that we are finished here
      */
     var pipeJson = function (cb) {
+        //create the final JSON
         var finalJson = JSON.stringify(files, null, 0);
-        var finalFile = new gutil.File();
+
+        //create the final file we return
+        var finalFile = new gutil.File({
+            base: initialBase,
+            path: path.join(initialBase,options.filename),
+            contents: new Buffer(finalJson)
+        });
         cb(null,finalFile);
     };
 
