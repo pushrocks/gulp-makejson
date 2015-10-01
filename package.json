@@ -1,6 +1,6 @@
 {
   "name": "gulp-makejson",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "creates json from source files and pipes the resulting jsonn down to the next plugin",
   "main": "index.js",
   "scripts": {
@@ -23,11 +23,11 @@
   "homepage": "https://github.com/pushrocks/gulp-bootstrap",
   "dependencies": {
     "gulp-util": "^3.0.6",
-    "pushrocks":"latest",
+    "pushrocks": "latest",
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "gulp":"latest",
-    "gulp-typescript":"latest"
+    "gulp": "latest",
+    "gulp-typescript": "latest"
   }
 }
