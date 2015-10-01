@@ -25,5 +25,9 @@
     "gulp-util": "^3.0.6",
     "pushrocks":"latest",
     "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "gulp":"latest",
+    "gulp-typescript":"latest"
   }
 }

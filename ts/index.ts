@@ -14,7 +14,7 @@ module.exports = function (options, logBool:boolean = false) {
     //log output filename
     if (logBool) pr.beautylog.log('filenames output is ' + options.filename);
 
-    var constructJson = {};
+    var constructObject = {};
     var initialBase:string;
 
     /**
@@ -32,7 +32,7 @@ module.exports = function (options, logBool:boolean = false) {
         }
 
         //create a new param on file with the String of the current Buffer as content
-        constructJson[file.relative] = String(file.contents);
+        constructObject[file.relative] = String(file.contents);
 
 
 
@@ -46,7 +46,7 @@ module.exports = function (options, logBool:boolean = false) {
      */
     var pipeJson = function (cb) {
         //create the final JSON
-        var finalJson = JSON.stringify(files, null, 0);
+        var finalJson = JSON.stringify(constructObject, null, 0);
 
         //create the final file we return
         var finalFile = new gutil.File({
