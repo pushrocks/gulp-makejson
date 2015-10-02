@@ -1,7 +1,7 @@
 {
   "name": "gulp-makejson",
   "version": "0.0.8",
-  "description": "creates json from source files and pipes the resulting jsonn down to the next plugin",
+  "description": "creates json from source files and pipes the resulting json down to the next plugin",
   "main": "index.js",
   "scripts": {
     "test": "(cd ts/compile && gulp)",
