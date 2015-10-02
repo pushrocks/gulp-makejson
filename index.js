@@ -51,7 +51,8 @@ module.exports = function (options, logBool) {
                 path: path.join(initialBase, options.filename),
                 contents: new Buffer(finalJson)
             });
-            cb(null, finalFile);
+            this.push(finalFile);
+            cb();
         }
         else {
             cb(null);
