@@ -1,6 +1,6 @@
 {
   "name": "gulp-makejson",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "creates json from source files and pipes the resulting jsonn down to the next plugin",
   "main": "index.js",
   "scripts": {
