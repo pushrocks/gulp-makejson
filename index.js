@@ -14,6 +14,7 @@ module.exports = function (options, logBool) {
         pr.beautylog.log('filenames output is ' + options.filename);
     var constructObject = {};
     var initialBase;
+    var initialBaseSet = false;
     /**
      * build the json, does not pipe anything down the pipeline, look at the pipeJson function for that
      * @param file The file (or chunk in node stream terms)
@@ -28,6 +29,9 @@ module.exports = function (options, logBool) {
         }
         //create a new param on file with the String of the current Buffer as content
         constructObject[file.relative] = String(file.contents);
+        //get base of first file
+        if (!initialBaseSet)
+            initialBase = file.base;
         return cb();
     };
     /**
