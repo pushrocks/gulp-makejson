@@ -1,16 +1,23 @@
 // import gulp
-var gulp = require("gulp"),
-	gulpTypescript = require("gulp-typescript");
+var gulp = require("gulp");
+var gulpTypescript = require("gulp-typescript");
+var pr = require("pushrocks");
 
 gulp.task('compileTS', function() {
-	var stream = gulp.src('../index.ts')
-	  .pipe(gulpTypescript({
-	  	out: "index.js"
-	  }))
-	  .pipe(gulp.dest("../../"));
-	return stream;
+	try {
+		var stream = gulp.src('../index.ts')
+            .pipe(gulpTypescript({
+                out: "index.js"
+            }))
+            .pipe(gulp.dest("../../"));
+		return stream;
+	}
+	catch (e) {
+		pr.beautylog.error(e);
+		throw new Error();
+	}
 });
 
 gulp.task('default',['compileTS'], function() {
-	console.log('Typescript compiled');
+    pr.beautylog.success('TypeScript compiled!');
 });
