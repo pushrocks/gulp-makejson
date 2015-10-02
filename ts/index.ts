@@ -16,6 +16,7 @@ module.exports = function (options, logBool:boolean = false) {
 
     var constructObject = {};
     var initialBase:string;
+    var initialBaseSet:boolean = false;
 
     /**
      * build the json, does not pipe anything down the pipeline, look at the pipeJson function for that
@@ -34,7 +35,8 @@ module.exports = function (options, logBool:boolean = false) {
         //create a new param on file with the String of the current Buffer as content
         constructObject[file.relative] = String(file.contents);
 
-
+        //get base of first file
+        if(!initialBaseSet) initialBase = file.base;
 
         return cb();
 
