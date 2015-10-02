@@ -14,9 +14,10 @@ module.exports = function (options, logBool:boolean = false) {
     //log output filename
     if (logBool) pr.beautylog.log('filenames output is ' + options.filename);
 
+    var filesInPipeline = false;
+    var firstFileProcessed = false;
     var constructObject = {};
     var initialBase:string;
-    var initialBaseSet:boolean = false;
 
     /**
      * build the json, does not pipe anything down the pipeline, look at the pipeJson function for that
@@ -36,7 +37,10 @@ module.exports = function (options, logBool:boolean = false) {
         constructObject[file.relative] = String(file.contents);
 
         //get base of first file
-        if(!initialBaseSet) initialBase = file.base;
+        if(!firstFileProcessed) {
+            filesInPipeline = true;
+            initialBase = file.base;
+        }
 
         return cb();
 
@@ -47,16 +51,20 @@ module.exports = function (options, logBool:boolean = false) {
      * @param cb the callback to let gulp know that we are finished here
      */
     var pipeJson = function (cb) {
-        //create the final JSON
-        var finalJson = JSON.stringify(constructObject, null, 0);
+        if (filesInPipeline) {
+            //create the final JSON
+            var finalJson = JSON.stringify(constructObject, null, 0);
 
-        //create the final file we return
-        var finalFile = new gutil.File({
-            base: initialBase,
-            path: path.join(initialBase,options.filename),
-            contents: new Buffer(finalJson)
-        });
-        cb(null,finalFile);
+            //create the final file we return
+            var finalFile = new gutil.File({
+                base: initialBase,
+                path: path.join(initialBase,options.filename),
+                contents: new Buffer(finalJson)
+            });
+            cb(null,finalFile);
+        } else {
+            cb(null);
+        }
     };
 
 

@@ -12,9 +12,10 @@ module.exports = function (options, logBool) {
     //log output filename
     if (logBool)
         pr.beautylog.log('filenames output is ' + options.filename);
+    var filesInPipeline = false;
+    var firstFileProcessed = false;
     var constructObject = {};
     var initialBase;
-    var initialBaseSet = false;
     /**
      * build the json, does not pipe anything down the pipeline, look at the pipeJson function for that
      * @param file The file (or chunk in node stream terms)
@@ -30,8 +31,10 @@ module.exports = function (options, logBool) {
         //create a new param on file with the String of the current Buffer as content
         constructObject[file.relative] = String(file.contents);
         //get base of first file
-        if (!initialBaseSet)
+        if (!firstFileProcessed) {
+            filesInPipeline = true;
             initialBase = file.base;
+        }
         return cb();
     };
     /**
@@ -39,15 +42,20 @@ module.exports = function (options, logBool) {
      * @param cb the callback to let gulp know that we are finished here
      */
     var pipeJson = function (cb) {
-        //create the final JSON
-        var finalJson = JSON.stringify(constructObject, null, 0);
-        //create the final file we return
-        var finalFile = new gutil.File({
-            base: initialBase,
-            path: path.join(initialBase, options.filename),
-            contents: new Buffer(finalJson)
-        });
-        cb(null, finalFile);
+        if (filesInPipeline) {
+            //create the final JSON
+            var finalJson = JSON.stringify(constructObject, null, 0);
+            //create the final file we return
+            var finalFile = new gutil.File({
+                base: initialBase,
+                path: path.join(initialBase, options.filename),
+                contents: new Buffer(finalJson)
+            });
+            cb(null, finalFile);
+        }
+        else {
+            cb(null);
+        }
     };
     return through.obj(buildJson, pipeJson);
 };
