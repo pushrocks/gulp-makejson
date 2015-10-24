@@ -12,7 +12,7 @@ var gulp = require("gulp");
 var gulpMakeJson = require('gulp-makejson');
 
 gulp.task("myTask", function() {
-    gulp.src("./markdown/*.md") //markdown is just an example here. Can be any kind of textfiles.
+    gulp.src("./markdown/**/*.md") //markdown is just an example here. Can be any kind of textfiles.
     .pipe(gulpMakeJson())
     .pipe(gulp.dest("./build/"))
 });
@@ -23,11 +23,12 @@ The task will create a json of all files in the pipeline in the following way:
 ```json
 {
     "myfirstfile.md": "#mytitle\nThis is the first paragraph",
-    "mysecondfile.md": "#mytitle\nThis is the second paragraph"
+    "subfolder/mysecondfile.md": "#mytitle\nThis is the second paragraph"
 }
 ```
 
-Note: Using this plugin will currently result in only one json file being emitted.
+>Note: Using this plugin will currently result in only one json file being emitted.
+>Note: The key will reflect the relative path of a file
 
 Feel free to contribute. Pull requests will be reviewed in a timely manner.
 
