@@ -23,7 +23,7 @@ The task will create a json of all files in the pipeline in the following way:
 ```json
 {
     "myfirstfile.md": "#mytitle\nThis is the first paragraph",
-    "mysecondfile.md": "#mytitle\This is the second paragraph"
+    "mysecondfile.md": "#mytitle\nThis is the second paragraph"
 }
 ```
 
