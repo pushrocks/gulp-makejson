@@ -29,7 +29,7 @@ The task will create a json of all files in the pipeline in the following way:
 
 Note: Using this plugin will currently result in only one json file being emitted.
 
-Feel free to contribute. Pullrequests will be reviewed in a timely manner.
+Feel free to contribute. Pull requests will be reviewed in a timely manner.
 
-Regards
-Phil from Lossless Digital.
+Regards  
+Phil from Lossless Digital
