@@ -4,7 +4,7 @@
   "description": "creates json from source files and pipes the resulting json down to the next plugin",
   "main": "index.js",
   "scripts": {
-    "test": "(cd ts/compile && gulp)",
+    "test": "(npmts)",
     "reinstall": "(rm -r node_modules && npm install)",
     "release": "(git pull origin master && npm version patch && git push origin master && git checkout release && git merge master && git push origin release && git checkout master)",
     "startdev": "(git checkout master && git pull origin master && npm install)"
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "gulp": "3.9.0",
-    "gulp-typescript": "2.9.2"
+    "gulp-typescript": "2.9.2",
+    "npmts": "^1.0.3"
   }
 }
