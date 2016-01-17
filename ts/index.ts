@@ -2,8 +2,8 @@
 'use strict';
 var gutil = require('gulp-util');
 var path = require("path");
-var pr = require('pushrocks');
 var through = require('through2');
+var beautylog = require("beautylog");
 
 module.exports = function (options, logBool:boolean = false) {
 
@@ -12,7 +12,7 @@ module.exports = function (options, logBool:boolean = false) {
     options.filename = options.filename || 'output.json';
 
     //log output filename
-    if (logBool) pr.beautylog.log('filenames output is ' + options.filename);
+    if (logBool) beautylog.log('filenames output is ' + options.filename);
 
     var filesInPipeline = false;
     var firstFileProcessed = false;
