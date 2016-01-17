@@ -9,11 +9,13 @@ creates json from source files and pipes the resulting json down to the next plu
 ### Usage
 ```javascript
 var gulp = require("gulp");
+var gulpMarkdown = require("gulp-markdown");
 var gulpMakeJson = require('gulp-makejson');
 
 gulp.task("myTask", function() {
     gulp.src("./markdown/**/*.md") //markdown is just an example here. Can be any kind of textfiles.
-    .pipe(gulpMakeJson())
+    .pipw(gulpMarkdown()) // converts the md files in html
+    .pipe(gulpMakeJson()) // packs all the html stuff in nice json format
     .pipe(gulp.dest("./build/"))
 });
 ```
