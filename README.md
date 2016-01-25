@@ -34,5 +34,7 @@ The task will create a json of all files in the pipeline in the following way:
 
 Feel free to contribute. Pull requests will be reviewed in a timely manner.
 
-Regards  
-Phil from Lossless Digital
+### About the authors:
+[![Project Phase](https://mediaserve.lossless.digital/lossless.de/img/createdby_github.svg)](https://lossless.com/)
+
+[![Support Us](https://img.shields.io/badge/Support%20us-PayPal-blue.svg)](https://paypal.me/lossless)
