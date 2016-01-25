@@ -14,9 +14,8 @@
     "url": "https://github.com/pushrocks/gulp-bootstrap.git"
   },
   "keywords": [
-    "json",
-    "jade",
-    "template"
+    "gulpplugin",
+    "json"
   ],
   "author": "Smart Coordination GmbH <office@push.rocks> (https://push.rocks)",
   "license": "MIT",
