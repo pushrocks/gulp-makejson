@@ -14,7 +14,7 @@ var gulpMakeJson = require('gulp-makejson');
 
 gulp.task("myTask", function() {
     gulp.src("./markdown/**/*.md") //markdown is just an example here. Can be any kind of textfiles.
-    .pipw(gulpMarkdown()) // converts the md files in html
+    .pipe(gulpMarkdown()) // converts the md files in html
     .pipe(gulpMakeJson()) // packs all the html stuff in nice json format
     .pipe(gulp.dest("./build/"))
 });
